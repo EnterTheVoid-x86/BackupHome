@@ -3,9 +3,13 @@
 # This bash script is used to backup a user's home directory to /tmp/.
 echo "Starting the backup..."
 
+echo "Where do you want to back it up to?"
+read choice
+echo "Ok, backing up..."
+
 user=$(whoami)
 input=/home/$user
-output=/tmp/${user}_home_$(date +%Y-%m-%d_%H%M%S).tar.gz
+output=/$choice/${user}_home_$(date +%Y-%m-%d_%H%M%S).tar.gz
 
 tar -czf $output $input
 echo "Backup of $input completed! Details about the output backup file:"
