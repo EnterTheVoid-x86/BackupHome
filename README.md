@@ -6,6 +6,9 @@ Pros:
 + Allows you to pick which files and directories you want o keep in the tar.gz
 + tar.gz file compression for saving storage
 
+Cons:
+- Literally none
+
 TODO:
 -----
 - Make it so that you can backup any directory instead of just home
