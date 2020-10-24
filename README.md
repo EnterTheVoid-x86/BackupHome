@@ -1,3 +1,13 @@
-# BackupHome
-Backup your home directory to /tmp/
-This is a simple shell script to keep your directory backed up to /tmp/ incase something happens to your actual /home/ directory and allows for easy restoration by putting all of your /home/ directory into a tar.gz file in /tmp/.
+BackupHome v2
+-------------
+Backup your home directory to a specified directory or drive
+
+Pros:
++ Allows you to pick which files and directories you want o keep in the tar.gz
++ tar.gz file compression for saving storage
+
+TODO:
+-----
+- Make it so that you can backup any directory instead of just home
+- Make it so that you can't just go around and put invalid directories
+- Add more command line arguments
