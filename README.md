@@ -3,7 +3,7 @@ BackupHome v2
 Backup your home directory to a specified directory or drive
 
 Pros:
-+ Allows you to pick which files and directories you want o keep in the tar.gz
++ Allows you to pick which files and directories you want to keep in the tar.gz
 + tar.gz file compression for saving storage
 
 Cons:
