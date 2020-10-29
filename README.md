@@ -1,4 +1,4 @@
-BackupHome v2 is now BackupD
+BackupHome v2 is now BackD
 -------------
 Backup any directory to a specified directory or drive in a tar.gz folder
 
