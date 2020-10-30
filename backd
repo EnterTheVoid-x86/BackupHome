@@ -24,6 +24,16 @@ echo "Starting backup as $user..."
 
 if [ $testingbranch = 1 ]
 then
+    printf "WARNING: YOU ARE ABOUT TO USE BACKD IN AN UNSAFE BRANCH. NO RESPONSIBILITY IS TAKEN FOR THE USE OF THIS PROGRAM IN THE TESTING BRANCH. ARE YOU SURE YOU WANT TO PROCEED?"
+    echo "yes/no"    
+        read yetanotherchoice
+if [ $yetanotherchoice = yes ]
+then
+    echo "Continuing..."
+else
+    echo "Aborting."
+if [ $testingbranch = 1 ]
+then
         echo "Packing dir into file as $file..."
 
 # The function total_files reports a total number of files for a given directory. 
@@ -37,7 +47,13 @@ function total_directories {
         find $1 -type d | wc -l
 }
 
-tar -czf $output $input 2> /dev/null
+if [ "$EUID" != "0" ]; then
+	echo "Please allow us to use sudo."
+	sudo tar -czf $output $input 2> /dev/null
+
+if [ $testingbranch = 1 ]
+then
+    printf "If you are reading this, you are cool. Your help is greatly appreciated in the testing branch. Thank you for using BackD."
 
 echo -n "Files to be included:"
 total_files $input
@@ -74,3 +90,4 @@ echo "Backup of $input completed!"
 echo "Details about the output backup file:"
 ls -l $output
 fi
+# this is a random line lol
