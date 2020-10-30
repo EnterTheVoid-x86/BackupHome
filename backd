@@ -32,10 +32,12 @@ then
     echo "Continuing..."
 else
     echo "Aborting."
+    exit
+fi
 if [ $testingbranch = 1 ]
 then
         echo "Packing dir into file as $file..."
-
+fi
 # The function total_files reports a total number of files for a given directory. 
 function total_files {
         find $1 -type f | wc -l
@@ -48,13 +50,13 @@ function total_directories {
 }
 
 if [ "$EUID" != "0" ]; then
-	echo "Please allow us to use sudo."
-	sudo tar -czf $output $input 2> /dev/null
-
+        echo "Please allow us to use sudo."
+        sudo tar -czf $output $input 2> /dev/null
+fi
 if [ $testingbranch = 1 ]
 then
     printf "If you are reading this, you are cool. Your help is greatly appreciated in the testing branch. Thank you for using BackD."
-
+fi
 echo -n "Files to be included:"
 total_files $input
 echo -n "Directories to be included:"
@@ -65,29 +67,5 @@ echo "Backup of $input completed!"
 echo "Details about the output backup file:"
 ls -l $output
 file $output
-# There's nothing more annoying than broken, non running code, folks! -Sonic
-else
-    # The function total_files reports a total number of files for a given directory. 
-function total_files {
-        find $1 -type f | wc -l
-}
-
-# The function total_directories reports a total number of directories
-# for a given directory. 
-function total_directories {
-        find $1 -type d | wc -l
-}
-
-tar -czf $output $input 2> /dev/null
-
-echo -n "Files to be included:"
-total_files $input
-echo -n "Directories to be included:"
-total_directories $input
-
-echo "Backup of $input completed!"
-
-echo "Details about the output backup file:"
-ls -l $output
 fi
-# this is a random line lol
+# There's nothing more annoying than broken, non running code, folks! -Sonic
