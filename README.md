@@ -14,10 +14,9 @@ TODO:
 -----
 - Make it so that you can't just go around and put invalid directories
 - Add more command line arguments
-- If read/write not allowed, ask for sudo
 
 ADDED JUST NOW:
 ---------------
 - New experimental command line argument
 - Support for any directory
-
+- If read/write not allowed, ask for sudo
