@@ -19,4 +19,4 @@ ADDED JUST NOW:
 ---------------
 - New experimental command line argument
 - Support for any directory
-- If read/write not allowed, ask for sudo
+- If user isn't root, ask for sudo so that we can write to non read/write directories for normal non root people
