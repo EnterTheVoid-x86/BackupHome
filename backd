@@ -6,12 +6,13 @@ if [[ "$1" = "--help" || "$1" = "-h" ]]; then
         printf "To use this program, just specify a directory to backup /home/$USER/ to."
         exit
 fi
-   
+
+testingbranch=1
 
 echo "Welcome to BACKDv2."
 echo "Which directory do you want to backup?"
 read dirchoice
-echo "Where do you want to backup $USER's home directory?"
+echo "Where do you want to backup $USER's $input directory?"
 read choicefordirback
 
 user=$(whoami)
@@ -21,7 +22,10 @@ file=/$choice/${user}_directory_$(date +%Y-%m-%d_%H%M%S).tar.gz
 
 echo "Starting backup as $user..."
 
-
+if [ $testingbranch = 1 ]
+then
+        echo "Packing dir into file as $file..."
+fi
 # The function total_files reports a total number of files for a given directory. 
 function total_files {
         find $1 -type f | wc -l
@@ -33,7 +37,10 @@ function total_directories {
         find $1 -type d | wc -l
 }
 
-tar -czf $output $input 2> /dev/null
+if [ "$EUID" != "0" ]; then
+        echo "Please allow us to use sudo."
+        sudo tar -czf $output $input 2> /dev/null
+fi
 
 echo -n "Files to be included:"
 total_files $input
@@ -45,4 +52,5 @@ echo "Backup of $input completed!"
 echo "Details about the output backup file:"
 ls -l $output
 file $output
+fi
 # There's nothing more annoying than broken, non running code, folks! -Sonic
